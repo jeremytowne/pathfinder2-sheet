@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field } from 'redux-form'
+import { Field, Fields } from 'redux-form'
 import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
@@ -28,19 +28,29 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    // justifyContent: 'space-around'
   },
-  defense: {
-    display: 'flex'
+  skills: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   general: {
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row'
-    // justifyContent: 'space-around',
   },
   textField: {
     margin: theme.spacing.unit
+  },
+  skill: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+  },
+  footer: {
+    margin: theme.spacing.unit,
   }
 })
 
@@ -114,27 +124,155 @@ const CharacterForm = ({
         />
       </FormControl>
     </Paper>
-    <FormLabel className={classes.defense} component="h3">
-      Defense
-    </FormLabel>
-    <FormControl className={classes.armor} />
-
-    <Field
-      name="radios"
-      defaultValue="untrained"
-      component={renderProficiency}
-    />
-    <Field
-      name="skill"
-      label="Perception"
-      ability={{
-        type: 'wisdom',
-        value: formValues && formValues.wisdomAttribute
-      }}
-      proficiency={2}
-      component={renderSkill}
-    />
-    <div>
+    <Paper className={classes.section}>
+      <FormLabel component="legend">Saving Throws</FormLabel>
+      <FormControl className={classes.skills}>
+        <div className={classes.skill}>
+          <Field
+            name="fortitudeSave"
+            label="Fortitude"
+            ability={{
+              type: 'constitution',
+              value: formValues && formValues.constitutionAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.fortitudeSaveProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="fortitudeSaveProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            name="reflexSave"
+            label="Reflex"
+            ability={{
+              type: 'dexterity',
+              value: formValues && formValues.dexterityAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.reflexSaveProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="reflexSaveProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            name="willSave"
+            label="Will"
+            ability={{
+              type: 'wisdom',
+              value: formValues && formValues.wisdomAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.willSaveProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="willSaveProficiency"
+            component={renderProficiency}
+          />
+        </div>
+      </FormControl>
+    </Paper>
+    <Paper className={classes.section}>
+      <FormLabel component="legend">Skills</FormLabel>
+      <FormControl className={classes.skills}>
+        <div className={classes.skill}>
+          <Field
+            displayArmor
+            name="acrobaticsSkill"
+            label="Acrobatics"
+            ability={{
+              type: 'dexterity',
+              value: formValues && formValues.dexterityAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.acrobaticsProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="acrobaticsProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            name="arcanaSkill"
+            label="Arcana"
+            ability={{
+              type: 'intelligence',
+              value: formValues && formValues.intelligenceAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.intelligenceProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="intelligenceProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            displayArmor
+            name="athleticsSkill"
+            label="Athletics"
+            ability={{
+              type: 'strength',
+              value: formValues && formValues.strengthAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.athleticsProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="athleticsProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            name="craftingSkill"
+            label="Crafting"
+            ability={{
+              type: 'intelligence',
+              value: formValues && formValues.intelligenceAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.craftingProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="craftingProficiency"
+            component={renderProficiency}
+          />
+        </div>
+        <div className={classes.skill}>
+          <Field
+            name="deceptionSkill"
+            label="Deception"
+            ability={{
+              type: 'charisma',
+              value: formValues && formValues.charismaAttribute
+            }}
+            characterLevel={formValues && formValues.characterLevel}
+            proficiency={formValues && formValues.deceptionProficiency}
+            component={renderSkill}
+          />
+          <Field
+            name="deceptionProficiency"
+            component={renderProficiency}
+          />
+        </div>
+      </FormControl>
+    </Paper>
+    <div className={classes.footer}>
       <Button
         type="submit"
         variant="outlined"

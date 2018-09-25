@@ -13,7 +13,8 @@ const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
   },
   controlLabel: {
     display: 'flex',
@@ -26,9 +27,7 @@ const styles = theme => ({
 
 class RadioButtonsGroup extends React.Component {
   handleChange = event => {
-    const newValue =
-      event.target.value === this.props.value ? null : event.target.value
-    this.props.onChange(newValue)
+    this.props.onChange(event.target.value)
   }
 
   render() {

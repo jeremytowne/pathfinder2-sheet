@@ -26,6 +26,16 @@ const styles = theme => ({
 })
 
 const attributeValue = attr => (isNil(attr) ? 0 : attr)
+const proficiencyValue = (characterLevel, proficiency) => {
+  const proficiencyMap = {
+    untrained: -2,
+    trained: 0,
+    expert: 1,
+    master: 2,
+    legendary: 3,
+  }
+  return characterLevel + proficiencyMap[proficiency]
+}
 
 class Skill extends React.Component {
   state = {
@@ -36,7 +46,7 @@ class Skill extends React.Component {
     return {
       skill:
         getAbilityModifier(attributeValue(props.ability.value)) +
-        attributeValue(props.proficiency) +
+        attributeValue(proficiencyValue(props.characterLevel, props.proficiency)) +
         attributeValue(props.value.item) +
         attributeValue(props.value.armor)
     }
@@ -98,20 +108,24 @@ class Skill extends React.Component {
 
 const modifierShape = PropTypes.shape({
   type: PropTypes.string,
-  value: PropTypes.number
+  value: PropTypes.number,
 })
 
 Skill.propTypes = {
   label: PropTypes.string.isRequired,
   ability: modifierShape.isRequired,
-  proficiency: PropTypes.number.isRequired,
+  proficiency: PropTypes.number,
+  characterLevel: PropTypes.number,
   displayArmor: PropTypes.bool,
   value: PropTypes.object, // item and optional armor
   onChange: PropTypes.func.isRequired
 }
 
 Skill.defaultProps = {
-  displayArmor: false
+  displayArmor: false,
+  value: {},
+  characterLevel: 1,
+  proficiency: 'untrained',
 }
 
 export default withStyles(styles)(Skill)
