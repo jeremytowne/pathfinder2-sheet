@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isNaN from 'lodash/isNaN'
 import parseInt from 'lodash/parseInt'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import { getAbilityModifierText } from '../../helpers'
+import grey from '@material-ui/core/colors/grey'
+import { getAbilityModifierText, getAbilityShortText } from '../../helpers'
 
 const styles = theme => ({
   root: {
@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   attribute: {
     padding: theme.spacing.unit * 1.5,
-    backgroundColor: 'lightgrey',
+    backgroundColor: grey[300],
     width: '90px',
   },
   modifier: {
@@ -50,12 +50,12 @@ class AbilityScore extends React.Component {
   }
 
   render = () => {
-    const { classes, attribute } = this.props
+    const { classes, attribute, value } = this.props
     return (
       <FormControl variant="outlined" className={classes.root}>
         <Paper className={classes.attribute} elevation={1}>
           <Typography variant="headline" component="h3">
-            {attribute.slice(0, 3).toUpperCase()}
+            {getAbilityShortText(attribute)}
           </Typography>
         </Paper>
         <TextField
@@ -69,8 +69,9 @@ class AbilityScore extends React.Component {
           className={classes.score}
           label="Score"
           variant="outlined"
+          type="number"
           onChange={this.handleChange}
-          value={this.props.value}
+          value={value}
         />
       </FormControl>
     )
