@@ -3,7 +3,7 @@
   "homepage": "https://create-react-app-redux.now.sh",
   "scripts": {
     "deploy": "now && now alias",
-    "start": "react-scripts start",
+    "start": "nodemon src/server & react-scripts start",
     "now-start": "serve -s ./build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -11,12 +11,15 @@
     "precommit": "pretty-quick --staged"
   },
   "devDependencies": {
+    "nodemon": "^1.18.4",
     "prettier": "1.14.3",
     "react-scripts": "1.1.5"
   },
   "dependencies": {
     "@material-ui/core": "^3.1.0",
     "connected-react-router": "4.4.1",
+    "esm": "^3.0.84",
+    "express": "^4.16.3",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "16.5.2",
@@ -29,5 +32,6 @@
     "redux-thunk": "2.3.0",
     "sanitize.css": "7.0.3",
     "serve": "10.0.1"
-  }
+  },
+  "proxy": "http://localhost:3005"
 }

@@ -9,7 +9,7 @@ import {
   getAbilityShortText,
   getModifierText,
   getAbilityModifier
-} from '../../helpers'
+} from '../../helpers/index'
 
 const styles = theme => ({
   root: {
@@ -114,7 +114,7 @@ const modifierShape = PropTypes.shape({
 Skill.propTypes = {
   label: PropTypes.string.isRequired,
   ability: modifierShape.isRequired,
-  proficiency: PropTypes.number,
+  proficiency: PropTypes.string,
   characterLevel: PropTypes.number,
   displayArmor: PropTypes.bool,
   value: PropTypes.object, // item and optional armor

@@ -3,11 +3,11 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import store, { history } from './store'
-import App from './containers/app'
+import store, { history } from './client/store'
+import App from './client/app/index'
 
 import 'sanitize.css/sanitize.css'
-import './index.css'
+import './client/index.css'
 
 const target = document.querySelector('#root')
 

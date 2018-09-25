@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import grey from '@material-ui/core/colors/grey'
-import { getAbilityModifierText, getAbilityShortText } from '../../helpers'
+import { getAbilityModifierText, getAbilityShortText } from '../../helpers/index'
 
 const styles = theme => ({
   root: {

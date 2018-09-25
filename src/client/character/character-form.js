@@ -12,7 +12,7 @@ import {
   renderTextField,
   renderNumberField,
   renderSkill
-} from '../../form/render'
+} from '../form/render'
 
 const styles = theme => ({
   root: {

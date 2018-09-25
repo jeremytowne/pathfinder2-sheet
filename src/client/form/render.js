@@ -1,8 +1,8 @@
 import React from 'react'
-import Proficiency from './proficiency'
-import AbilityScore from './ability-score'
+import Proficiency from './proficiency/index'
+import AbilityScore from './ability-score/index'
 import TextField from '@material-ui/core/TextField'
-import Skill from './skill'
+import Skill from './skill/index'
 
 export function renderProficiency({ input, ...props }) {
   return <Proficiency {...input} {...props} />
