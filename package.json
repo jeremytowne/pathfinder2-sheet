@@ -31,7 +31,7 @@
     "redux-form": "^7.4.2",
     "redux-thunk": "2.3.0",
     "sanitize.css": "7.0.3",
-    "serve": "10.0.1"
+    "serve": "10.1.2"
   },
   "proxy": "http://localhost:3005"
 }
